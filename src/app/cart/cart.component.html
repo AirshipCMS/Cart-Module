@@ -5,8 +5,8 @@
       <div class="cart-item-content">
         <div class="cart-item-details">
           <div class="cart-item-name">
-            <h3 class="cart-item-title"><a class="truncate" href="">{{item.product_title}}</a></h3>
-            <p>{{item.product_variation_title}}</p>
+            <h3 class="cart-item-title"><a class="truncate" href="">{{ item.product_title }}</a></h3>
+            <p>{{ item.product_variation_title }}</p>
           </div>
           <form class="cart-item-quantity quantity">
             <div class="select">
@@ -25,19 +25,19 @@
             </div>
           </form>
         </div>
-        <h4 class="cart-item-price amount">{{ item.price.usd * item.quantity/100 }}</h4><a class="cart-item-delete cart-delete" href=""><span>&times;</span></a>
+        <h4 class="cart-item-price amount">{{ item.price.usd * item.quantity/100 | currency:'USD':true }}</h4><a class="cart-item-delete cart-delete" href=""><span>&times;</span></a>
       </div>
     </li>
     <li class="cart-subtotal-wrapper">
       <h3 class="cart-subtotal-label">Subtotal</h3>
-      <h4 class="cart-subtotal-amount amount">${{getSubtotal()}} <span class="cart-subtotal-currency">USD</span></h4>
+      <h4 class="cart-subtotal-amount amount">{{ cartService.calculateSubtotal(cart) | currency:'USD':true }} <span class="cart-subtotal-currency">USD</span></h4>
     </li>
   </ul>
   <div class="cart-buttons">
     <div class="cart-buttons-left">
       <div class="order-notes-container">
         <h1>Order Notes</h1>
-        <textarea id="order-notes" placeholder="Add notes to your order..."></textarea>
+        <textarea id="order-notes" placeholder="Add notes to your order..." [(ngModel)]="cart.customer_notes"></textarea>
       </div>
     </div>
     <div class="cart-buttons-right">

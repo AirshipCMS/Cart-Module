@@ -1,17 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CartService } from './cart.service';
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  providers: [CartService]
 })
 export class CartComponent implements OnInit {
   cart : any;
   subtotal : number;
 
-  constructor() {
-    this.cart = localStorage.getItem('ngStorage-cart') === null ? { items: [] } : JSON.parse(localStorage.getItem('ngStorage-cart'));
-    console.log(this.cart)
+  constructor(public cartService: CartService) {
+    this.cart = this.cartService.getCart();
   }
 
   ngOnInit() {
