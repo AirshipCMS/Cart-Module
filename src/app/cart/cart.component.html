@@ -1,6 +1,6 @@
 <div class="cart aerocart">
-  <ul class="cart-items" id="cart">
-    <li class="empty-cart">You have no items in your cart.</li>
+  <p *ngIf="cart.items.length === 0" class="empty-cart">You have no items in your cart.</p>
+  <ul *ngIf="cart.items.length>0" class="cart-items" id="cart">
     <li class="cart-item fade" *ngFor="let item of cart.items">
       <div class="cart-item-content">
         <div class="cart-item-details">
@@ -25,7 +25,7 @@
       <h4 class="cart-subtotal-amount amount">{{ cartService.calculateSubtotal(cart) | currency:'USD':true }} <span class="cart-subtotal-currency">USD</span></h4>
     </li>
   </ul>
-  <div class="cart-buttons">
+  <div *ngIf="cart.items.length>0" class="cart-buttons">
     <div class="cart-buttons-left">
       <div class="order-notes-container">
         <h1>Order Notes</h1>
@@ -34,7 +34,7 @@
     </div>
     <div class="cart-buttons-right">
       <div class="pay-button">
-        <button class="button pay-with-cc-button" id="cart-checkout-button"><a href="#"><span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
+        <button *ngIf="cart.items.length>0" (click)="checkout()" class="button pay-with-cc-button" id="cart-checkout-button"><a href="#"><span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
         <title>lock-icon</title>
         <g fill="none" fill-rule="evenodd" id="Desktop" stroke="none" stroke-width="1">
           <g fill="#E2AFA8" id="Shopping-Cart" transform="translate(-503.000000, -639.000000)">
@@ -50,7 +50,8 @@
       </div>
     </div><!--cart-buttons-right-->
     <div class="other-buttons">
-      <button class="clear-cart-button button-text" id="clear-button" type='button'>Clear Cart</button> <a class="button continue-shopping-button button-text" href="/" class="continue-shopping-button" target="_self">Continue Shopping</a>
+      <button *ngIf="cart.items.length>0" class="clear-cart-button button-text" id="clear-button" type='button' (click)='toggleDialog()'>Clear Cart</button>
+      <a class="button continue-shopping-button button-text" href="/" class="continue-shopping-button" target="_self">Continue Shopping</a>
     </div>
   </div>
 </div><!--aerocart-->
@@ -58,7 +59,8 @@
   <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Are you sure you want to clear your cart?</p>
   <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
     <div class="ui-dialog-buttonset">
-      <button class="ui-button ui-corner-all ui-widget" type="button">Cancel</button><button class="ui-button ui-corner-all ui-widget" type="button">Clear Cart</button>
+      <button class="ui-button ui-corner-all ui-widget" type="button" (click)="toggleDialog()">Cancel</button>
+      <button class="ui-button ui-corner-all ui-widget" type="button" (click)="clearCart()">Clear Cart</button>
     </div>
   </div>
 </div>
