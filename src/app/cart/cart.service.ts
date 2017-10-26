@@ -21,4 +21,16 @@ export class CartService {
     return subtotal/100;
   }
 
+  updateCart(cart) {
+    localStorage.setItem('ngStorage-cart', JSON.stringify(cart));
+  }
+
+  deleteCartItem(cart, i) {
+    return cart.items.splice(i, 0);
+  }
+
+  clearCart(cart) {
+    return cart.items = [];
+  }
+
 }

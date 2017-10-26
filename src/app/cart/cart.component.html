@@ -10,22 +10,14 @@
           </div>
           <form class="cart-item-quantity quantity">
             <div class="select">
-              <select class="cart-item-quantity-select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
+              <select class="cart-item-quantity-select" [(ngModel)]="item.quantity" name="quantity">
+                <option *ngFor="let i of quantityRange; let i = index" value="{{i}}">{{ i }}</option>
               </select>
             </div>
           </form>
         </div>
-        <h4 class="cart-item-price amount">{{ item.price.usd * item.quantity/100 | currency:'USD':true }}</h4><a class="cart-item-delete cart-delete" href=""><span>&times;</span></a>
+        <h4 class="cart-item-price amount">{{ item.price.usd * item.quantity/100 | currency:'USD':true }}</h4>
+        <span class="cart-item-delete cart-delete" (click)="deleteCartItem(i)">&times;</span>
       </div>
     </li>
     <li class="cart-subtotal-wrapper">
