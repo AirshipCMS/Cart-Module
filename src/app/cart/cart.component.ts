@@ -19,15 +19,11 @@ export class CartComponent implements OnInit {
   products : Array<any> = [];
 
   constructor(public cartService: CartService) {
-    this.cart = this.cartService.getCart();
+    let cart = this.cartService.getCart();
+    this.cart = cart.cart;
+    this.products = cart.products;
+    this.subscriptionProducts = cart.subscriptionProducts;
     this.quantityRange = Array.from({ length: 20 }, (v, i) => i);
-    this.cart.items.forEach((item) => {
-      if(item.type === 'plan') {
-        this.subscriptionProducts.push(item);
-      } else {
-        this.products.push(item);
-      }
-    });
   }
 
   ngOnInit() {
@@ -44,8 +40,11 @@ export class CartComponent implements OnInit {
     this.cartService.updateCart(this.cart);
   }
 
-  deleteCartItem(i:number) {
-    this.cart.items = this.cartService.deleteCartItem(this.cart, i);
+  deleteCartItem(item) {
+    let cart = this.cartService.deleteCartItem(this.cart, item);
+    this.cart = cart.cart;
+    this.products = cart.products;
+    this.subscriptionProducts = cart.subscriptionProducts;
   }
 
   toggleDialog() {
