@@ -1,0 +1,197 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700);
+
+// Breakpoints
+
+$breakpoints: (
+  'medium-small': '(min-width: 531px)',
+  'medium-small-700': '(min-width: 700px)',
+  'medium': '(min-width: 830px)',
+  'medium-large': '(min-width: 975px)',
+  'large': '(min-width: 1151px)',
+  'largest': '(min-width: 1301px)',
+);
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(type-of($raw-query) == 'string', unquote($raw-query), inspect($raw-query));
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+      + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+// Colors
+
+$cart-highlight-color: #555555;
+$cart-text-color: #9B9B9B;
+$cart-delete-color: #EB4B07;
+$cart-line-color: #E3E4E4;
+$cart-background-color: #FFF;
+
+// Sizes
+
+$cart-label-size-small: 9.5px;
+$cart-label-line-height-small: 11px;
+
+$cart-label-size-large: 10px;
+$cart-label-line-height-large: 13px;
+
+$cart-text-size-small: 14px;
+$cart-text-line-height-small: 16px;
+
+$cart-text-size-large: 11.5px;
+$cart-text-line-height-large: 16px;
+
+$cart-title-size-small: 18px;
+$cart-title-line-height-small: 22px;
+
+$cart-title-size-large: 19px;
+$cart-title-line-height-large: 23px;
+
+// Typography Mixins
+@mixin cart-title{
+  // [ or @include your own ]
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: $cart-title-size-large;
+  line-height: $cart-title-size-large;
+  color: $cart-highlight-color;
+  font-weight: normal;
+}
+
+@mixin cart-paragraph{
+  // [ or @include your own ]
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: $cart-text-size-large;
+  line-height: $cart-text-line-height-large;
+  color: $cart-text-color;
+  font-weight: normal; 
+}
+
+@mixin cart-subtitle{
+  // [ or @include your own ]
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: $cart-text-size-small;
+  line-height: $cart-text-line-height-small;
+  letter-spacing: 1px;
+  color: $cart-text-color;
+
+  @include respond-to('medium-small'){
+    font-size: $cart-text-size-large;
+    line-height: $cart-text-line-height-large;
+  }
+}
+
+// Button Mixins
+
+// Flat Button
+@mixin flat-button{
+  @include cart-subtitle;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+  background-color: $cart-highlight-color;
+  line-height: 2.5rem;
+  border: 0;
+  border-radius: 2px;
+  font-size: $cart-label-size-small;
+  padding: 0 1rem;
+  flex: 0 0 auto;
+
+  @include respond-to('medium-small'){
+    font-size: $cart-text-size-large;
+    line-height: 2.5rem;
+  }
+
+  &:hover,
+  &.active,
+  &:focus{
+    transition: all 0.2s ease;
+    cursor: pointer;
+    padding: 0 1rem;
+    border: 0;
+    border-bottom: 0; 
+    outline: none;
+    color: #FFFFFF;
+    background-color: lighten($cart-highlight-color, 5%);
+  }
+
+  &:hover{
+    opacity: 0.7;
+  }
+
+  &.disabled{
+    background-color: lighten($cart-highlight-color, 40%);
+    opacity: 0.4;
+
+    &:hover{
+      cursor: default;
+    }
+  }
+}
+
+// Raised Button
+@mixin raised-button($raised-bg-color: #FFFFFF, $raised-border-color: #CCCCCC, $raised-border-bottom-color: #CCCCCC, $raised-text-color: #333333){
+  @include cart-subtitle;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.2s ease;
+
+  flex: 1 1 auto;
+  padding: 0.75rem 0;
+  border-radius: 3px;
+  
+  // COLOR
+  background-color: $raised-bg-color;
+  border: 1px solid $raised-border-color;
+  border-bottom: 4px solid $raised-border-bottom-color;
+  color: $raised-text-color;
+
+  &:hover,
+  &.active,
+  &:focus,
+  &:visited,
+  &:active{
+    transition: all 0.2s ease;
+    cursor: pointer;
+    padding: 0.7rem 0;
+    outline: none;
+
+    background-color: $raised-border-bottom-color;
+    border: 1px solid $raised-border-bottom-color;
+    border-bottom: 2px solid darken($raised-border-bottom-color, 20%); 
+    color: $raised-text-color;
+
+  }
+}
+
+@mixin cart-button{
+  @include raised-button($cart-highlight-color, $cart-highlight-color, darken($cart-highlight-color, 10%), darken($cart-highlight-color, 30%));
+  
+  @include respond-to('medium-small'){
+    @include flat-button;
+  }
+}
+
+// Truncate
+// @mixin truncate {
+//   height: 20px;
+//   display: block;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+
+//   @include respond-to('medium') {
+//     width: 230px;
+//   }
+
+//   @include respond-to('large') {
+//     width: 310px;
+//   }
+// }

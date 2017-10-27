@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/Rx';
-import { Observable } from 'rxjs/Observable';
 
 import { Cart } from './cart';
 import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CartService {
-  constructor(private http: Http) { }
+  constructor() { }
 
   getCart() {
     let cart = localStorage.getItem('ngStorage-cart') === null ? Cart : JSON.parse(localStorage.getItem('ngStorage-cart'));
@@ -36,10 +33,6 @@ export class CartService {
 
   clearCart(cart) {
     return cart.items = [];
-  }
-
-  handleError(error: Response) {
-    return Observable.throw(error);
   }
 
 }

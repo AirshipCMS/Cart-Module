@@ -22,7 +22,7 @@ export class CartComponent implements OnInit {
 
   constructor(public cartService: CartService) {
     this.cart = this.cartService.getCart();
-    Array.from({ length: 21 }, (v, i) => this.quantityRange.push(i));
+    this.quantityRange = Array.from({ length: 20 }, (v, i) => i);
     this.cart.items.forEach((item) => {
       if(item.type === 'plan') {
         this.subscriptionProducts.push(item);
