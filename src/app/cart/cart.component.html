@@ -1,7 +1,10 @@
 <div class="cart aerocart">
   <p *ngIf="cart.items.length === 0" class="empty-cart">You have no items in your cart.</p>
-  <ul *ngIf="cart.items.length>0" class="cart-items" id="cart">
-    <li class="cart-item fade" *ngFor="let item of cart.items">
+  <!-- products -->
+  <ul *ngIf="products.length>0" class="cart-items" id="cart">
+    <li *ngIf="subscriptionProducts.length>0" class="cart-item-label">Single-Payment Items</li>
+    <li *ngIf="subscriptionProducts.length === 0" class="cart-item-label">Items</li>
+    <li class="cart-item item fade" *ngFor="let item of products">
       <div class="cart-item-content">
         <div class="cart-item-details">
           <div class="cart-item-name">
@@ -22,7 +25,28 @@
     </li>
     <li class="cart-subtotal-wrapper">
       <h3 class="cart-subtotal-label">Subtotal</h3>
+      <h3 class="cart-subtotal-label">({{ products.length }} items)</h3>
       <h4 class="cart-subtotal-amount amount">{{ cartService.calculateSubtotal(cart) | currency:'USD':true }} <span class="cart-subtotal-currency">USD</span></h4>
+    </li>
+  </ul>
+  <!-- subscription products -->
+  <ul *ngIf="subscriptionProducts.length>0" class="cart-items" id="cart">
+    <li class="cart-plan plan" *ngFor="let item of cart.items">
+      <div class="cart-item-label" *ngIf="item.type === 'plan'">Recurring-Payment Subscription</div>
+      <div class="cart-item-content plan-content" *ngIf="item.type === 'plan'">
+        <div class="cart-item-details">
+          <div class="cart-item-name">
+            <h3 class="cart-item-title"><a class="truncate" href="">{{ item.product_title }}</a></h3>
+            <p>Plan Name - $[price] due every [interval]</p>
+            <p>Trial Period Days: </p>
+          </div>
+          <div class="cart-item-quantity quantity">
+            <p>{{ item.quantity }}</p>
+          </div>
+        </div>
+        <h4 class="cart-item-price amount">$[price]</h4>
+        <span class="cart-item-delete cart-delete" (click)="deleteCartItem(i)">&times;</span>
+      </div>
     </li>
   </ul>
   <div *ngIf="cart.items.length>0" class="cart-buttons">

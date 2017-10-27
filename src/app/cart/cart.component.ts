@@ -8,7 +8,7 @@ declare var $;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css'],
+  styleUrls: ['./cart.component.scss'],
   providers: [CartService]
 })
 export class CartComponent implements OnInit {
@@ -17,10 +17,19 @@ export class CartComponent implements OnInit {
   quantityRange : Array<number> = [];
   confirmClearCart : boolean;
   dialogState : string = 'open';
+  subscriptionProducts : Array<any> = [];
+  products : Array<any> = [];
 
   constructor(public cartService: CartService) {
     this.cart = this.cartService.getCart();
-    Array.from({ length: 11 }, (v, i) => this.quantityRange.push(i));
+    Array.from({ length: 21 }, (v, i) => this.quantityRange.push(i));
+    this.cart.items.forEach((item) => {
+      if(item.type === 'plan') {
+        this.subscriptionProducts.push(item);
+      } else {
+        this.products.push(item);
+      }
+    });
   }
 
   ngOnInit() {
@@ -48,6 +57,8 @@ export class CartComponent implements OnInit {
 
   clearCart() {
     this.cart.items = this.cartService.clearCart(this.cart);
+    this.subscriptionProducts = [];
+    this.products = [];
     this.toggleDialog();
   }
 
