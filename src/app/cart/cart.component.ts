@@ -13,9 +13,7 @@ declare var $;
 })
 export class CartComponent implements OnInit {
   cart : any;
-  subtotal : number;
   quantityRange : Array<number> = [];
-  confirmClearCart : boolean;
   dialogState : string = 'open';
   subscriptionProducts : Array<any> = [];
   products : Array<any> = [];
