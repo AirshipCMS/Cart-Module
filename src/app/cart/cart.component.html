@@ -40,14 +40,14 @@
           <div class="cart-item-details">
             <div class="cart-item-name">
               <h3 class="cart-item-title"><a class="truncate" href="">{{ item.product_title }}</a></h3>
-              <p>Plan Name - $[price] due every [interval]</p>
-              <p>Trial Period Days: </p>
+              <p>Plan Name - {{ item.price.usd/100 | currency: 'USD' }} due every {{ item.product_plan.interval }}</p>
+              <p *ngIf="item.product_plan.trial_days && item.product_plan.trail_days > 0">Trial Period Days: {{ item.product_plan.trail_days }}</p>
             </div>
             <div class="cart-item-quantity quantity">
               <p>{{ item.quantity }}</p>
             </div>
           </div>
-          <h4 class="cart-item-price amount">$[price]</h4>
+          <h4 class="cart-item-price amount">{{ item.price.usd/100 | currency: 'USD' }}</h4>
           <span class="cart-item-delete cart-delete" (click)="deleteCartItem(item)">&times;</span>
         </div>
       </li>

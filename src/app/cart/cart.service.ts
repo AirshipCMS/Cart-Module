@@ -10,7 +10,7 @@ export class CartService {
   getCart() {
     let subscriptionProducts = [],
         products = []
-    let cart = localStorage.getItem('ngStorage-cart') === null ? Cart : JSON.parse(localStorage.getItem('ngStorage-cart'));
+    let cart = localStorage.getItem('cart') === null ? Cart : JSON.parse(localStorage.getItem('cart'));
     let splitItems = this.splitCartItemsByType(cart);
     subscriptionProducts = splitItems.subscriptionProducts;
     products = splitItems.products;
@@ -29,7 +29,7 @@ export class CartService {
   }
 
   updateCart(cart) {
-    localStorage.setItem('ngStorage-cart', JSON.stringify(cart));
+    localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   deleteCartItem(cart, item) {

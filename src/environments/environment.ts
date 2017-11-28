@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  domain: 'domain.airshipcms-alpha.io'
+  domain: 'endtoend.airshipcms-alpha.io'
 };
