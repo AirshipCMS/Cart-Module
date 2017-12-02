@@ -71,21 +71,15 @@
           </g>
         </g></svg></span> <span class="button-text">Checkout</span></a></button>
       </div>
-      <button *ngIf="cart.items.length>0" class="clear-cart-button button-text" id="clear-button" type='button' (click)='toggleDialog()'>Clear Cart</button>
-      <!-- <div class="order-notes-container">
-        <h1>Order Notes</h1>
-        <textarea id="order-notes" placeholder="Add notes to your order..." [(ngModel)]="cart.customer_notes"></textarea>
-      </div> -->
+      <button *ngIf="cart.items.length>0 && !showClearCart" class="clear-cart-button button-text" id="clear-button" type='button' (click)='toggleDialog()'>Clear Cart</button>
     </div>
     <div class="cart-buttons-right"></div><!--cart-buttons-right-->
   </div>
 </div><!--aerocart-->
-<div id="dialog-confirm" style='display:none' title="Clear Cart?">
-  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>Are you sure you want to clear your cart?</p>
-  <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
-    <div class="ui-dialog-buttonset">
-      <button class="ui-button ui-corner-all ui-widget" type="button" (click)="toggleDialog()">Cancel</button>
-      <button class="ui-button ui-corner-all ui-widget" type="button" (click)="clearCart()">Clear Cart</button>
-    </div>
+<div class="clear-cart-confirmation" *ngIf="showClearCart">
+  <p>Are you sure you want to clear your cart?</p>
+  <div class="clear-cart-buttons">
+    <button type="button" (click)="toggleDialog()">Cancel</button>
+    <button type="button" (click)="clearCart()">Clear Cart</button>
   </div>
 </div>

@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { environment } from '../../environments/environment';
 
-declare var $;
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +12,7 @@ declare var $;
 export class CartComponent implements OnInit {
   cart : any;
   quantityRange : Array<number> = [];
-  dialogState : string = 'open';
+  showClearCart : boolean = false;
   subscriptionProducts : Array<any> = [];
   products : Array<any> = [];
 
@@ -26,15 +24,7 @@ export class CartComponent implements OnInit {
     this.quantityRange = Array.from({ length: 20 }, (v, i) => i);
   }
 
-  ngOnInit() {
-    $('#dialog-confirm').dialog({
-      resizable: false,
-      height: "auto",
-      width: 400,
-      modal: true,
-    });
-    this.toggleDialog();
-  }
+  ngOnInit() {}
 
   ngDoCheck() {
     this.cartService.updateCart(this.cart);
@@ -48,8 +38,7 @@ export class CartComponent implements OnInit {
   }
 
   toggleDialog() {
-    this.dialogState = this.dialogState === 'open' ? 'close' : 'open'
-    $('#dialog-confirm').dialog(this.dialogState);
+    this.showClearCart = !this.showClearCart;
   }
 
   clearCart() {
@@ -60,8 +49,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
-    let encodedCart = encodeURIComponent(JSON.stringify((this.cart)));
-    window.location.href = `https://${environment.domain}/checkout#/#${encodedCart}`;
+    window.location.href = '/checkout';
   }
 
 }
