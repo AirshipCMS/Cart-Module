@@ -20,7 +20,7 @@
               </div>
             </form>
           </div>
-          <h4 class="cart-item-price amount">{{ item.price.usd * item.quantity/100 | currency:'USD':true }}</h4>
+          <h4 class="cart-item-price amount">{{ item.price.usd/100 | currency:'USD':true }}</h4>
           <span class="cart-item-delete cart-delete" (click)="deleteCartItem(item)">&times;</span>
         </div>
       </li>
