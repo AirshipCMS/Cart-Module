@@ -47,6 +47,16 @@ export class CartComponent implements OnInit {
     this.toggleDialog();
   }
 
+  itemCount() {
+    let count = 0;
+    this.cart.items.forEach((item) => {
+      if(item.type !== 'plan') {
+        count += parseInt(item.quantity);
+      }
+    });
+    return count;
+  }
+
   checkout() {
     window.location.href = '/checkout';
   }

@@ -27,7 +27,7 @@
     </ul>
     <div class="cart-subtotal-wrapper">
       <h3 class="cart-subtotal-label">Subtotal</h3>
-      <h3 class="cart-subtotal-label">({{ products.length }} items)</h3>
+      <h3 class="cart-subtotal-label">({{ itemCount() }} items)</h3>
       <h4 class="cart-subtotal-amount amount">{{ cartService.calculateSubtotal(cart) | currency:'USD':true }} <span class="cart-subtotal-currency">USD</span></h4>
     </div>
   </div>
