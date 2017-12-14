@@ -55,9 +55,9 @@
   </div>
   <div *ngIf="cart.items.length>0" class="cart-buttons">
     <div class="cart-buttons-left">
-      <a class="button continue-shopping-button" href="/checkout" target="_self">Continue Shopping</a>
+      <a class="button continue-shopping-button" href="/" target="_self">Continue Shopping</a>
       <div class="pay-button">
-        <button *ngIf="cart.items.length>0" (click)="checkout()" class="button pay-with-cc-button" id="cart-checkout-button"><a href="#"><span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
+        <button *ngIf="cart.items.length>0" (click)="checkout()" class="button pay-with-cc-button" id="cart-checkout-button"><a href="/checkout"><span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
         <title>lock-icon</title>
         <g fill="none" fill-rule="evenodd" id="Desktop" stroke="none" stroke-width="1">
           <g fill="#E2AFA8" id="Shopping-Cart" transform="translate(-503.000000, -639.000000)">
