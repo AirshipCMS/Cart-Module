@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { Cart } from './cart';
-import { environment } from '../../environments/environment';
 
 @Injectable()
 export class CartService {
