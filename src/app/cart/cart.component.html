@@ -1,15 +1,15 @@
-<div class="cart aerocart">
+<div class="cart cart-container">
   <p *ngIf="cart.items.length === 0" class="empty-cart">You have no items in your cart.</p>
   <!-- products -->
   <div class="cart-items-wrapper" *ngIf="products.length>0">
-    <div *ngIf="subscriptionProducts.length>0" class="cart-item-label"><span>Single-Payment Items</span></div>
-    <div *ngIf="subscriptionProducts.length === 0" class="cart-item-label"><span>Items</span></div>
+    <h4 *ngIf="subscriptionProducts.length>0" class="container-header"><span>Single-Payment Items</span></h4>
+    <h4 *ngIf="subscriptionProducts.length === 0" class="container-header"><span>Items</span></h4>
     <ul class="cart-items">
       <li class="cart-item item fade" *ngFor="let item of products">
         <div class="cart-item-content">
           <div class="cart-item-details">
             <div class="cart-item-name">
-              <h3 class="cart-item-title"><a class="truncate" href="">{{ item.product_title }}</a></h3>
+              <h3 class="cart-item-title">{{ item.product_title }}</h3>
               <p>{{ item.product_variation_title }}</p>
             </div>
             <form class="cart-item-quantity quantity">
@@ -35,11 +35,11 @@
   <div *ngIf="subscriptionProducts.length>0">
     <ul class="cart-items">
       <li class="cart-plan plan" *ngFor="let item of subscriptionProducts">
-        <div class="cart-item-label"><span>Recurring-Payment Subscription</span></div>
+        <h4 class="container-header"><span>Recurring-Payment Subscription</span></h4>
         <div class="cart-item-content cart-plan-content">
           <div class="cart-item-details">
             <div class="cart-item-name">
-              <h3 class="cart-item-title"><a class="truncate" href="">{{ item.product_title }}</a></h3>
+              <h3 class="cart-item-title">{{ item.product_title }}</h3>
               <p>{{ item.product_plan.name }} - <span>USD</span> {{ item.price.usd/100 | currency: 'USD':true }} due every {{ item.product_plan.interval }}</p>
               <p *ngIf="item.product_plan.trial_days && item.product_plan.trail_days > 0">Trial Period Days: {{ item.product_plan.trail_days }}</p>
             </div>
@@ -78,7 +78,7 @@
     </div>
     <div class="cart-buttons-right"></div><!--cart-buttons-right-->
   </div>
-</div><!--aerocart-->
+</div><!--cart-container-->
 <div class="clear-cart-confirmation" *ngIf="showClearCart">
   <p>Are you sure you want to clear your cart?</p>
   <div class="clear-cart-buttons">
