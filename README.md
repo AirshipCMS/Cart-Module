@@ -8,13 +8,13 @@ run `npm run build` this will compile and minify the application into `/dist`.
 
 In your airship project, add `airship-cart.min.js` to `compartments/assets/scripts` and `airship-cart.min.css` to `compartments/assets/styles`.
 
-Include these files in `compartments/templates/cart.html`.
+add the following to `compartments/templates/cart.html`.
 
 ```
-<head>
-  <link rel="stylesheet" link="/assets/styles/airship-cart.min.css"></link>
-</head>
 <body>
+  <base href="/">
+  <app-root></app-root>
+  <link rel="stylesheet" type="text/css" href="/assets/styles/airship-cart.min.css">
   <script type="text/javascript" src="/assets/scripts/airship-cart.min.js"></script>
 </body>
 ```
