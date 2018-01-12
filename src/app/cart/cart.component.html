@@ -1,7 +1,7 @@
 <div class="cart cart-container">
   <p *ngIf="cart.items.length === 0" class="empty-cart">You have no items in your cart.</p>
   <!-- products -->
-  <div class="cart-items-wrapper" *ngIf="products.length>0">
+  <div class="single-payment-cart" *ngIf="products.length>0">
     <h4 *ngIf="subscriptionProducts.length>0" class="container-header"><span>Single-Payment Items</span></h4>
     <h4 *ngIf="subscriptionProducts.length === 0" class="container-header"><span>Items</span></h4>
     <ul class="cart-items">
@@ -27,14 +27,14 @@
     </ul>
     <div class="cart-subtotal-wrapper">
       <h3 class="cart-subtotal-label">Subtotal</h3>
-      <h3 class="cart-subtotal-label">({{ itemCount() }} items)</h3>
+      <h3 class="cart-items-label">({{ itemCount() }} items)</h3>
       <h4 class="cart-subtotal-amount amount">{{ cartService.calculateSubtotal(cart) | currency:'USD':true }} <span class="cart-subtotal-currency">USD</span></h4>
     </div>
   </div>
   <!-- subscription products -->
-  <div *ngIf="subscriptionProducts.length>0">
-    <ul class="cart-items">
-      <li class="cart-plan plan" *ngFor="let item of subscriptionProducts">
+  <div class="subscription-carts-container" *ngIf="subscriptionProducts.length>0">
+    <ul class="subscription-carts">
+      <li class="subscription-cart" *ngFor="let item of subscriptionProducts">
         <h4 class="container-header"><span>Recurring-Payment Subscription</span></h4>
         <div class="cart-item-content cart-plan-content">
           <div class="cart-item-details">
@@ -60,7 +60,7 @@
           <span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
             <title>lock-icon</title>
             <g fill="none" fill-rule="evenodd" id="Desktop" stroke="none" stroke-width="1">
-              <g fill="#E2AFA8" id="Shopping-Cart" transform="translate(-503.000000, -639.000000)">
+              <g fill="#000000" id="Shopping-Cart" transform="translate(-503.000000, -639.000000)">
                 <g id="BG-+-10:15:10:15-+-Rectangle-395-+-Payment_icons-+-Rectangle-395-+-Payment_icons-Copy-+-Rectangle-395-+-Payment_icons-Copy-2" transform="translate(451.000000, 626.000000)">
                   <g id="10:15:10:15-+-Rectangle-395-+-Payment_icons-+-Rectangle-395-+-Payment_icons-Copy-+-Rectangle-395-+-Payment_icons-Copy-2-+-lock-icon" transform="translate(52.000000, 13.000000)">
                     <g id="lock-icon">
