@@ -55,22 +55,25 @@
   </div>
   <div *ngIf="cart.items.length>0" class="cart-buttons">
     <div class="cart-buttons-left">
-      <a class="button continue-shopping-button" href="/" target="_self">Continue Shopping</a>
-      <div class="pay-button">
-        <button *ngIf="cart.items.length>0" (click)="checkout()" class="button pay-with-cc-button" id="cart-checkout-button"><a href="/checkout"><span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
-        <title>lock-icon</title>
-        <g fill="none" fill-rule="evenodd" id="Desktop" stroke="none" stroke-width="1">
-          <g fill="#E2AFA8" id="Shopping-Cart" transform="translate(-503.000000, -639.000000)">
-            <g id="BG-+-10:15:10:15-+-Rectangle-395-+-Payment_icons-+-Rectangle-395-+-Payment_icons-Copy-+-Rectangle-395-+-Payment_icons-Copy-2" transform="translate(451.000000, 626.000000)">
-              <g id="10:15:10:15-+-Rectangle-395-+-Payment_icons-+-Rectangle-395-+-Payment_icons-Copy-+-Rectangle-395-+-Payment_icons-Copy-2-+-lock-icon" transform="translate(52.000000, 13.000000)">
-                <g id="lock-icon">
-                  <path d="M8.35280899,3.73058252 L7.36516854,3.73058252 L7.36516854,3.01262136 C7.36516854,1.35497573 6.0741573,0.00703883495 4.48651685,0.00703883495 C2.8988764,0.00703883495 1.60786517,1.35497573 1.60786517,3.01262136 L1.60786517,3.73058252 L0.620224719,3.73058252 C0.279775281,3.73058252 0.00337078652,4.01917476 0.00337078652,4.37463592 L0.00337078652,10.2309466 C0.00337078652,10.5864078 0.279775281,10.875 0.620224719,10.875 L8.35955056,10.875 C8.7,10.875 8.97640449,10.5864078 8.97640449,10.2309466 L8.97640449,4.37463592 C8.96966292,4.01917476 8.69325843,3.73058252 8.35280899,3.73058252 L8.35280899,3.73058252 Z M4.98539326,7.98203883 L4.98539326,8.98507282 L3.97752809,8.98507282 L3.97752809,7.98203883 C3.47191011,7.7743932 3.11460674,7.25703883 3.11460674,6.65873786 C3.11460674,5.87038835 3.7247191,5.23337379 4.47977528,5.23337379 C5.23483146,5.23337379 5.84494382,5.87038835 5.84494382,6.65873786 C5.84831461,7.26055825 5.49101124,7.7743932 4.98539326,7.98203883 L4.98539326,7.98203883 Z M6.3505618,3.73058252 L2.61573034,3.73058252 L2.61573034,3.01262136 C2.61573034,1.93567961 3.45505618,1.06286408 4.48314607,1.06286408 C5.51123596,1.06286408 6.3505618,1.93919903 6.3505618,3.01262136 L6.3505618,3.73058252 L6.3505618,3.73058252 Z" id="Shape"></path>
+      <button class="button continue-shopping-button" (click)="continueShopping()">Continue Shopping</button>
+        <button *ngIf="cart.items.length>0" (click)="checkout()" class="button pay-with-cc-button" id="cart-checkout-button">
+          <span class="secure"> <svg height="11px" version="1.1" viewbox="0 0 9 11" width="9px" xmlns="http://www.w3.org/2000/svg">
+            <title>lock-icon</title>
+            <g fill="none" fill-rule="evenodd" id="Desktop" stroke="none" stroke-width="1">
+              <g fill="#E2AFA8" id="Shopping-Cart" transform="translate(-503.000000, -639.000000)">
+                <g id="BG-+-10:15:10:15-+-Rectangle-395-+-Payment_icons-+-Rectangle-395-+-Payment_icons-Copy-+-Rectangle-395-+-Payment_icons-Copy-2" transform="translate(451.000000, 626.000000)">
+                  <g id="10:15:10:15-+-Rectangle-395-+-Payment_icons-+-Rectangle-395-+-Payment_icons-Copy-+-Rectangle-395-+-Payment_icons-Copy-2-+-lock-icon" transform="translate(52.000000, 13.000000)">
+                    <g id="lock-icon">
+                      <path d="M8.35280899,3.73058252 L7.36516854,3.73058252 L7.36516854,3.01262136 C7.36516854,1.35497573 6.0741573,0.00703883495 4.48651685,0.00703883495 C2.8988764,0.00703883495 1.60786517,1.35497573 1.60786517,3.01262136 L1.60786517,3.73058252 L0.620224719,3.73058252 C0.279775281,3.73058252 0.00337078652,4.01917476 0.00337078652,4.37463592 L0.00337078652,10.2309466 C0.00337078652,10.5864078 0.279775281,10.875 0.620224719,10.875 L8.35955056,10.875 C8.7,10.875 8.97640449,10.5864078 8.97640449,10.2309466 L8.97640449,4.37463592 C8.96966292,4.01917476 8.69325843,3.73058252 8.35280899,3.73058252 L8.35280899,3.73058252 Z M4.98539326,7.98203883 L4.98539326,8.98507282 L3.97752809,8.98507282 L3.97752809,7.98203883 C3.47191011,7.7743932 3.11460674,7.25703883 3.11460674,6.65873786 C3.11460674,5.87038835 3.7247191,5.23337379 4.47977528,5.23337379 C5.23483146,5.23337379 5.84494382,5.87038835 5.84494382,6.65873786 C5.84831461,7.26055825 5.49101124,7.7743932 4.98539326,7.98203883 L4.98539326,7.98203883 Z M6.3505618,3.73058252 L2.61573034,3.73058252 L2.61573034,3.01262136 C2.61573034,1.93567961 3.45505618,1.06286408 4.48314607,1.06286408 C5.51123596,1.06286408 6.3505618,1.93919903 6.3505618,3.01262136 L6.3505618,3.73058252 L6.3505618,3.73058252 Z" id="Shape"></path>
+                    </g>
+                  </g>
                 </g>
               </g>
             </g>
-          </g>
-        </g></svg></span> <span class="button-text">Checkout</span></a></button>
-      </div>
+          </svg>
+        </span>
+        <span class="button-text">Checkout</span>
+      </button>
       <button *ngIf="cart.items.length>0 && !showClearCart" class="clear-cart-button button-text" id="clear-button" type='button' (click)='toggleDialog()'>Clear Cart</button>
     </div>
     <div class="cart-buttons-right"></div><!--cart-buttons-right-->

@@ -61,4 +61,8 @@ export class CartComponent implements OnInit {
     window.location.href = '/checkout';
   }
 
+  continueShopping() {
+    window.location.href = '/';
+  }
+
 }
