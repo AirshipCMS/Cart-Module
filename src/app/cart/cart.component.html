@@ -40,8 +40,7 @@
           <div class="cart-item-details">
             <div class="cart-item-name">
               <h3 class="cart-item-title">{{ item.product_title }}</h3>
-              <p>{{ item.product_plan.name }} - {{ item.price.usd/100 | currency: 'USD':true }} <span class="currency">USD</span> due every {{ item.product_plan.interval }}</p>
-              <p *ngIf="item.product_plan.trial_days && item.product_plan.trail_days > 0">Trial Period Days: {{ item.product_plan.trail_days }}</p>
+              <p>{{ item.product_plan.name }} - {{ item.price.usd/100 | currency: 'USD':true }} <span class="currency">USD</span> due every {{ item.product_plan.interval }} <span *ngIf="item.product_plan.trial_period_days && item.product_plan.trial_period_days != 0">({{item.product_plan.trial_period_days}}-day trial)</span></p>
             </div>
             <div class="cart-item-quantity quantity">
               <p>{{ item.quantity }}</p>
